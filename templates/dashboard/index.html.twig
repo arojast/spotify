@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+<div class="jumbotron">
+    <h2>Nuevos lanzamientos en Spotify</h2>
+    <br><br>
+
+    <div class="row row-cols-md-3 row-cols-sm-1">
+        {% for release in releases %}
+            <div class="col mb-4 sm-12">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ release.images[0].url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ release.name }}</h5>
+                        {% for artist in release.artists %}
+                            <a href="{{ path('artist', {id: artist.id }) }}" class="btn btn-primary">{{ artist.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
